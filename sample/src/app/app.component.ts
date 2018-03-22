@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {MatSnackBar} from '@angular/material';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +8,7 @@ import {MatSnackBar} from '@angular/material';
 })
 export class AppComponent {
   title = 'app';
-  constructor(public snackBar: MatSnackBar) {}
+  constructor(public snackBar: MatSnackBar) { }
 
   openSnackBar() {
     this.snackBar.open("Snackbar Message", "Ok", {

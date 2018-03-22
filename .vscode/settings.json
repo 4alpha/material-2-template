@@ -1,0 +1,15 @@
+// Place your settings in this file to overwrite the default settings
+{
+  "editor.fontSize": 17,
+  "editor.tabSize": 2,
+  "editor.detectIndentation": false,
+  "files.trimTrailingWhitespace": true,
+  "editor.formatOnSave": true,
+  "window.zoomLevel": 1,
+  "javascript.format.insertSpaceAfterFunctionKeywordForAnonymousFunctions": false,
+  "workbench.activityBar.visible": false,
+  "editor.minimap.enabled": false,
+  "git.enableSmartCommit": true,
+  "git.confirmSync": false,
+  "git.ignoreLimitWarning": true
+}

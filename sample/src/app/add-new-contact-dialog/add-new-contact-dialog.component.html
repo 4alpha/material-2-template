@@ -1,0 +1,17 @@
+<h2 mat-dialog-title>Add New Contact</h2>
+<form fxLayout="column" fxLayoutAlign="space-around stretch">
+  <div fxLayout="row" fxLayoutAlign="space-around center">
+    <label fxFlex="20">Email</label>
+    <mat-form-field fxFlex>
+      <input matInput name="newEmail" placeholder="Enter Email">
+
+    </mat-form-field>
+  </div>
+  <!-- <mat-dialog-actions> -->
+  <div fxFlex="30" fxLayoutGap="2em" fxLayout="row" fxLayoutAlign="start center">
+    <div fxFlex="20"></div>
+    <button type="button" mat-raised-button color="primary">Submit</button>
+    <button type="button" mat-dialog-close mat-raised-button>Cancel</button>
+  </div>
+  <!-- </mat-dialog-actions> -->
+</form>

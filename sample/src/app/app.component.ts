@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { MatSnackBar } from '@angular/material';
+import { MatDialog } from '@angular/material';
+import { AddNewContactDialogComponent } from './add-new-contact-dialog/add-new-contact-dialog.component';
 
 @Component({
   selector: 'app-root',
@@ -8,11 +9,14 @@ import { MatSnackBar } from '@angular/material';
 })
 export class AppComponent {
   title = 'app';
-  constructor(public snackBar: MatSnackBar) { }
+  constructor(public dialog: MatDialog) { }
 
-  openSnackBar() {
-    this.snackBar.open("Snackbar Message", "Ok", {
-      duration: 500,
+  openDialog() {
+    const dialogRef = this.dialog.open(AddNewContactDialogComponent, {
+      width: '500px',
+      height: '250px',
+      position: { bottom: '5%', left: '30%', right: '30%' },
+      disableClose: true
     });
   }
 }

@@ -1,0 +1,39 @@
+<div fxLayoutGap="2em" fxLayout="column" fxLayoutAlign="space-between stretch">
+  <div fxLayout="row" fxLayoutAlign="center center">
+    <mat-card fxFlex.gt-xs="70%">
+      <form fxLayout="row" fxLayoutAlign="space-around center">
+        <mat-form-field fxFlex>
+          <input matInput placeholder="Enter Email or Domain">
+        </mat-form-field>
+      </form>
+    </mat-card>
+  </div>
+  <div fxLayoutAlign="end end">
+    <button mat-raised-button (click)="openDialog()" style="margin-right:15%">Add New Contact</button>
+  </div>
+  <div *ngIf="addNewContact==0" fxLayout="row" fxLayoutAlign="center center">
+    <mat-card fxFlex.gt-xs="70%">
+      <span fxLayoutAlign="end end">
+        <button mat-icon-button (click)="addNewContact=0">
+          <mat-icon>close</mat-icon>
+        </button>
+      </span>
+      <mat-card-title>Add New Contact</mat-card-title>
+      <form fxLayout="column" fxLayoutAlign="space-around stretch">
+        <div fxLayout="row" fxLayoutAlign="space-around center">
+          <label fxFlex="20">Email</label>
+          <mat-form-field fxFlex>
+            <input matInput name="newEmail" placeholder="Enter Email">
+
+          </mat-form-field>
+        </div>
+
+        <div fxFlex="30" fxLayoutGap="2em" fxLayout="row" fxLayoutAlign="start center">
+          <div fxFlex="20"></div>
+          <button type="button" mat-raised-button color="primary">Submit</button>
+          <button type="button" mat-raised-button>Cancel</button>
+        </div>
+      </form>
+    </mat-card>
+  </div>
+</div>

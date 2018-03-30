@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { MatDialog } from '@angular/material';
-import { AddNewContactDialogComponent } from './add-new-contact-dialog/add-new-contact-dialog.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -9,14 +8,12 @@ import { AddNewContactDialogComponent } from './add-new-contact-dialog/add-new-c
 })
 export class AppComponent {
   title = 'app';
-  constructor(public dialog: MatDialog) { }
+  constructor(private router: Router) { }
 
-  openDialog() {
-    const dialogRef = this.dialog.open(AddNewContactDialogComponent, {
-      width: '500px',
-      height: '250px',
-      position: { bottom: '5%', left: '30%', right: '30%' },
-      disableClose: true
-    });
+  showDashboard() {
+    this.router.navigateByUrl('dashboard');
+  }
+  showSearch() {
+    this.router.navigateByUrl('search');
   }
 }

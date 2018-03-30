@@ -14,6 +14,13 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatSelectModule } from '@angular/material/select';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+// import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { MatNativeDateModule } from '@angular/material/';
 
 @NgModule({
   imports: [
@@ -28,7 +35,14 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatFormFieldModule,
     MatCardModule,
     MatInputModule,
-    MatDialogModule
+    MatDialogModule,
+    MatSelectModule,
+    MatCheckboxModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatDatepickerModule,
+    // NoopAnimationsModule,
+    MatNativeDateModule
   ],
   exports: [
     FlexLayoutModule,
@@ -42,7 +56,14 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatFormFieldModule,
     MatCardModule,
     MatInputModule,
-    MatDialogModule
+    MatDialogModule,
+    MatSelectModule,
+    MatCheckboxModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatDatepickerModule,
+    // NoopAnimationsModule,
+    MatNativeDateModule
   ]
 })
 export class MaterialImportModule { }

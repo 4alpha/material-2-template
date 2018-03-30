@@ -1,0 +1,67 @@
+<div fxLayout="column" fxLayoutAlign="space-between center">
+  <mat-form-field style="width:30%">
+    <mat-select [(value)]="selected" placeholder="Select Report">
+      <mat-option value="leadGenerated">Lead Generated</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <div *ngIf="selected=='leadGenerated'" fxLayoutGap="1em" fxLayout="column" fxLayoutAlign="space-around">
+    <form fxFlex="30" fxLayout="row" fxLayoutGap="2em" fxLayoutAlign="space-around center">
+      <mat-checkbox name="today" [(ngModel)]="today">Today's</mat-checkbox>
+      <mat-form-field fxFlex *ngIf="!today">
+        <input matInput [matDatepicker]="fromDatePicker" required name="fromDate" [(ngModel)]="fromDate" placeholder="From Date"
+          disabled>
+        <mat-datepicker-toggle matSuffix [for]="fromDatePicker"></mat-datepicker-toggle>
+        <mat-datepicker #fromDatePicker disabled="false"></mat-datepicker>
+      </mat-form-field>
+      <mat-form-field fxFlex *ngIf="!today">
+        <input matInput [matDatepicker]="toDatePicker" required name="toDate" [(ngModel)]="toDate" placeholder="To Date" disabled>
+        <mat-datepicker-toggle matSuffix [for]="toDatePicker"></mat-datepicker-toggle>
+        <mat-datepicker #toDatePicker disabled="false"></mat-datepicker>
+      </mat-form-field>
+      <button type="button" (click)="show()" mat-raised-button color="primary">Show</button>
+    </form>
+    <div fxFlex fxFlex="70">
+      <div *ngIf="!today && showOptions">
+        <a mat-raised-button (click)="showInTabularFormat()">Show in Tabular Format</a>
+        <a mat-raised-button (click)="showInGraphFormat()">Show in Graph Format</a>
+      </div>
+      <div *ngIf="today && showLeadCount" style="text-align:center">
+        <a mat-raised-button (click)="showTodaysDetails()">Today's Lead Count is {{leadCount}}. Click to View Details</a>
+      </div>
+      <div [hidden]="!(today && showTodaysTable)">
+        <mat-table #table2 [dataSource]="dataSource2">
+          <ng-container matColumnDef="email">
+            <mat-header-cell *matHeaderCellDef> Email </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element}} </mat-cell>
+          </ng-container>
+          <mat-header-row *matHeaderRowDef="displayedColumns2"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns2;"></mat-row>
+        </mat-table>
+        <mat-paginator #paginator2 [pageSize]="10" [pageSizeOptions]="[5, 10, 20]" [showFirstLastButtons]="true">
+        </mat-paginator>
+      </div>
+      <div [hidden]="!(!today && showRangeTable)">
+        <mat-table #table [dataSource]="dataSource">
+          <ng-container matColumnDef="name">
+            <mat-header-cell *matHeaderCellDef> Date </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="value">
+            <mat-header-cell *matHeaderCellDef> Count </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.value}} </mat-cell>
+          </ng-container>
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>
+        <mat-paginator #paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20]" [showFirstLastButtons]="true">
+        </mat-paginator>
+      </div>
+      <div *ngIf="!today && showGraph">
+        <ngx-charts-bar-vertical [view]="view" [results]="dataInRange" [gradient]="gradient" [xAxis]="showXAxis" [yAxis]="showYAxis"
+          [legend]="showLegend" [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel"
+          [yAxisLabel]="yAxisLabel">
+        </ngx-charts-bar-vertical>
+      </div>
+    </div>
+  </div>
+</div>

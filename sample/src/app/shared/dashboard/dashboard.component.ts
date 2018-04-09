@@ -9,7 +9,7 @@ import { MatPaginator } from '@angular/material/paginator';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements AfterViewInit {
-
+  reportList: string[];
   todaysData: string[];
   dataInRange: { name: Date; value: number; }[];
   showTodaysTable: boolean;
@@ -43,75 +43,16 @@ export class DashboardComponent implements AfterViewInit {
   };
 
   constructor() {
-    this.single = [
-      {
-        name: 'Germany',
-        'value': 8940000
-      },
-      {
-        name: 'USA',
-        'value': 5000000
-      },
-      {
-        name: 'France',
-        'value': 7200000
-      }
+    this.reportList = [
+      'Lead Generated',
+      'Lead by Campaign',
+      'Lead by Team',
+      'Lead by Employee Role'
     ];
   }
 
   ngAfterViewInit() {
     // this.dataSource.paginator = this.paginator;
-  }
-
-  show() {
-    if (this.today) {
-      this.showLeadCount = true;
-      this.leadCount = 10;
-      this.showRangeTable = false;
-      this.showGraph = false;
-      this.showOptions = false;
-      this.fromDate = this.toDate = null;
-
-    } else {
-      this.showLeadCount = false;
-      this.showTodaysTable = false;
-      let fromDate: any = new Date(this.fromDate);
-      let toDate: any = new Date(this.toDate);
-      fromDate = fromDate.getFullYear() + '-' + fromDate.getMonth() + 1 + '-' + fromDate.getDate();
-      toDate = toDate.getFullYear() + '-' + toDate.getMonth() + 1 + '-' + toDate.getDate();
-      // Call this.data = getResult(fromDate, toDate);
-      this.showOptions = true;
-      this.dataInRange = [
-        {
-          name: new Date('2/3/2018'),
-          value: 200
-        },
-        {
-          name: new Date('4/3/2018'),
-          value: 350
-        },
-        {
-          name: new Date('5/3/2018'),
-          value: 350
-        },
-        {
-          name: new Date('6/3/2018'),
-          value: 350
-        },
-        {
-          name: new Date('7/3/2018'),
-          value: 350
-        },
-        {
-          name: new Date('8/3/2018'),
-          value: 390
-        },
-        {
-          name: new Date('10/3/2018'),
-          value: 420
-        }
-      ];
-    }
   }
 
   showInTabularFormat() {
@@ -140,4 +81,73 @@ export class DashboardComponent implements AfterViewInit {
     this.dataSource2.paginator = this.paginator2;
     console.log(this.dataSource2.paginator);
   }
+
+  onShow(event) {
+    this.today = event.today;
+    if (event.reportSelected === 'Lead Generated') {
+      if (event.today) {
+        // this.leadCount = event.leadCount;
+        this.showOptions = false;
+        this.showLeadCount = true;
+        this.showRangeTable = false;
+        this.showGraph = false;
+        // Get lead Count
+        this.leadCount = 10;
+      } else {
+        this.showLeadCount = false;
+        this.showTodaysTable = false;
+        if (event.fromDate && event.toDate) {
+          this.showOptions = true;
+          let fromDate: any = new Date(event.fromDate);
+          let toDate: any = new Date(event.toDate);
+          fromDate = fromDate.getFullYear() + '-' + fromDate.getMonth() + 1 + '-' + fromDate.getDate();
+          toDate = toDate.getFullYear() + '-' + toDate.getMonth() + 1 + '-' + toDate.getDate();
+          // Get Range Data
+          this.dataInRange = [
+            {
+              name: new Date('2/3/2018'),
+              value: 200
+            },
+            {
+              name: new Date('4/3/2018'),
+              value: 350
+            },
+            {
+              name: new Date('5/3/2018'),
+              value: 350
+            },
+            {
+              name: new Date('6/3/2018'),
+              value: 350
+            },
+            {
+              name: new Date('7/3/2018'),
+              value: 350
+            },
+            {
+              name: new Date('8/3/2018'),
+              value: 390
+            },
+            {
+              name: new Date('10/3/2018'),
+              value: 420
+            }
+          ];
+        }
+      }
+    }
+  }
+
+  // onCheckboxChanged(event) {
+  //   if (event === true) {
+  //     this.showLeadCount = true;
+  //     this.showRangeTable = false;
+  //     this.showGraph = false;
+  //     this.showOptions = false;
+  //     this.fromDate = this.toDate = null;
+  //   } else {
+  //     this.showLeadCount = false;
+  //     this.showTodaysTable = false;
+  //   }
+  // }
 }

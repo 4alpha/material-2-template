@@ -4,7 +4,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { MaterialImportModule } from '../material.import.module';
 import { SearchComponent } from './search/search.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ReportComponent } from './report/report.component';
 
 
 @NgModule({
@@ -12,12 +13,13 @@ import { FormsModule } from '@angular/forms';
     CommonModule,
     NgxChartsModule,
     MaterialImportModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   exports: [
     DashboardComponent,
     SearchComponent
   ],
-  declarations: [DashboardComponent, SearchComponent]
+  declarations: [DashboardComponent, SearchComponent, ReportComponent]
 })
 export class SharedModule { }
